@@ -1,0 +1,154 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+button{
+    color: white;
+    background-color: rgb(45, 45, 255);
+    border: 1px solid rgb(173, 173, 173);
+    padding: 5px;
+}
+input{
+    padding: 5px;
+}
+strong{
+    background-color: rgb(157, 255, 37);
+}
+.heading-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 10vh;
+    background-color: rgb(165, 82, 0);
+    color: white;
+    font-size: 7vh;
+}
+.heading-container>p{
+    padding: 5%;
+}
+.container {
+    height: 90vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(30vh,1fr));
+}
+.list-side {
+    padding: 5px;
+    background-color: antiquewhite;
+    overflow: scroll;
+}
+#options-for-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    padding: 0  5% 0 5%;
+}
+.question-container{
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgba(255, 238, 129, 0.696);
+    padding: 0 0 0 5%;
+    margin-bottom: 2px;
+}
+.title-div{
+    width: 100%;
+    cursor: pointer;
+}
+.question-options-grid{
+    display: grid;
+    grid-template-columns: repeat(3,40px) 60px 40px;
+    grid-gap: 4px;
+}
+.grid-item{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+img{
+    width: 60%;
+    cursor: pointer;
+}
+.like-button{
+    padding-bottom: 3px;
+}
+.dislike-button{
+    padding-top: 3px;
+}
+.time-text{
+    font-size: 0.9vw;
+}
+/* -------------------------------------------------------------------------------------------------------- */
+/* form side */
+
+.form-side-container{
+    padding: 5%;
+    background-color: rgb(216, 216, 216);
+    overflow: scroll;
+}
+.form-heading {
+    margin-top:5%;
+    margin-bottom: 3%;
+}
+.form-paragraphs{
+    margin-bottom:5%;
+}
+.mytextarea {
+    width: 100%;
+    margin-top: 3%;
+    margin-bottom: 5%;
+
+}
+.submit-button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+.grey-text{
+    color: grey;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.form-side-question-container {
+    background-color: rgb(218, 255, 195);
+    padding:5px;
+    margin-top: 8px;
+    margin-bottom: 7px;
+
+}
+.resolve-button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+.given-responses{
+    margin-top: 5px;
+    overflow: scroll;
+    height: 20vh;
+}
+.response-div {
+    background-color: rgb(218, 255, 195);
+    padding:2px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+.add-new-response>h2{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+/* -------------------------------------------------------------------------------------------------------- */
+
+/* when screen width is less than 1080px */
+@media only screen and (max-width: 1080px){
+    .heading-container{
+        font-size: 7.5vh;
+    }
+}
+/* when screen width is less than 360px*/
+@media only screen and (max-width: 360px){
+    .heading-container{
+        font-size: 6vh;
+        width: 360px;
+    }
+    body{
+        width: 360px;
+    }
+}
