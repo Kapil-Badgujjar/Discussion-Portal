@@ -330,6 +330,7 @@ window.addEventListener("load",function(){
         QKey=localStorageQKey;
         sorByVotes(x);
     }
+    openAddNewQuestionForm();
 });
 let searchBox = document.getElementById("search-box");
 searchBox.addEventListener("keyup",function(event){
@@ -346,17 +347,26 @@ searchBox.addEventListener("keyup",function(event){
 function searchFunction(pattern){
     y=[];
     F=[];
-    let found;
-    let myQuestion, myPattern;
+    let found1,found2;
+    let myQuestion,mytitle, myPattern;
     x.forEach(function(a)
     {
+        let tempObj;
         myQuestion=a.question.toUpperCase();
+        mytitle=a.questionTitle.toUpperCase();
         myPattern=pattern.toUpperCase();
-        found=myQuestion.search(myPattern);
-        if(found!=-1){
+        found1=mytitle.search(myPattern);
+        found2=myQuestion.search(myPattern);
+
+        if(found1!=-1||found2!=-1){
             y.push(a);
-            F.push(found);
+            tempObj={
+                title: found1,
+                question: found2
+            };
+            F.push(tempObj);
         }
+        
     });
     refreshSearchedList(y,F,pattern.length);
 }
@@ -364,7 +374,7 @@ function searchFunction(pattern){
 function refreshSearchedList(mylist,F,length){
     document.getElementById("list-questions").innerHTML="";
     for(let i=0; i<mylist.length; i++){
-        addSearchedQuestionToList(mylist[i],F[i],length,mylist,F);
+        addSearchedQuestionToList(mylist[i],F[i].title,F[i].question,length,mylist,F);
     }
 }
 
@@ -377,7 +387,7 @@ function sortSearchedByVotes(mylist,F,length){
     });
     refreshSearchedList(mylist,F,length);
 }
-function addSearchedQuestionToList(obj,pos,length,mylist,F){
+function addSearchedQuestionToList(obj,pos1,pos2,length,mylist,F){
     let containerDiv = document.createElement("div");
     containerDiv.setAttribute("class", "question-container");
     let titleDiv=document.createElement("div");
@@ -386,11 +396,17 @@ function addSearchedQuestionToList(obj,pos,length,mylist,F){
         openQuestionDescription(obj,obj.id);
     });
     let h3=document.createElement("h3");
+    if(pos1>-1)
+    h3.innerHTML=`${obj.questionTitle.substring(0,pos1)}<strong>${obj.questionTitle.substring(pos1,pos1+length)}</strong>${obj.questionTitle.substring(pos1+length)}`;
+    else
     h3.innerHTML=obj.questionTitle;
     h3.setAttribute("class", "title");
     titleDiv.appendChild(h3);
     let pA=document.createElement("p");
-    pA.innerHTML=`${obj.question.substring(0,pos)}<strong>${obj.question.substring(pos,pos+length)}</strong>${obj.question.substring(pos+length)}`;
+    if(pos2>-1)
+    pA.innerHTML=`${obj.question.substring(0,pos2)}<strong>${obj.question.substring(pos2,pos2+length)}</strong>${obj.question.substring(pos2+length)}`;
+    else
+    pA.innerHTML=obj.question;
     pA.setAttribute("class", "question");
     titleDiv.appendChild(pA);
     containerDiv.appendChild(titleDiv);
